@@ -37,7 +37,18 @@ if (XMen$Numero[i]==20) XMen$Nivel[i]<-3}
 # dibujamos el timeline
 
 
-DrawTimeLine<- function(x, y, z, XminLim=min(x), XmaxLim=max(x), YminLim=0, YmaxLim=(max(y)+1), color="blue",DrawBoard=TRUE, Lines=TRUE, Points=TRUE, Text=FALSE, FirstText=TRUE, FirstTextChar=z[1]){
+DrawTimeLine<- function(x, y, z, 
+                                 XminLim=min(x), 
+                                 XmaxLim=max(x), 
+                                 YminLim=0, 
+                                 YmaxLim=(max(y)+1), 
+                                 color="blue",
+                                 DrawBoard=TRUE, 
+                                 Lines=TRUE, 
+                                 Points=TRUE, 
+                                 Text=FALSE, 
+                                 FirstText=TRUE, 
+                                 FirstTextChar=z[1]){
                # x = Variable con la posición en el eje de tiempo
                # y = Nivel del la variable
                # Z = Texto a poner en pantalla
@@ -60,6 +71,13 @@ DrawTimeLine<- function(x, y, z, XminLim=min(x), XmaxLim=max(x), YminLim=0, Ymax
                if (FirstText) text(x[1],y[1]+0.1,label=FirstTextChar,col=color)
                }
 
+WriteEvent<-function(x,y,z){
+               # x = Variable con la posición en el eje de tiempo
+               # y = Nivel del la variable (se situará en negativo, por debajo del eje X)
+               # Z = Texto a poner en pantalla
+               text(x,-(y),z)
+               line(rep(x,y),c(-y:0))
+               }
 #Prueba
 
 DrawTimeLine(UncannyXMen$Orden,UncannyXMen$Nivel,UncannyXMen$Numero,XmaxLim=66000,FirstTextChar="UXMen")
