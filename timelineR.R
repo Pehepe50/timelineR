@@ -36,6 +36,25 @@ if (XMen$Numero[i]==20) XMen$Nivel[i]<-3}
 
 # dibujamos el timeline
 
+DrawBoard<-function(             XminLim=0, 
+                                 XmaxLim=1000, 
+                                 YminLim=-3, 
+                                 YmaxLim=3
+                                 DrawAxis=TRUE
+                                 Labels=FALSE
+                                 Ticks=FALSE){
+               # XminLim = Límite inferior del eje X
+               # XmaxLim = Límite superior del eje X
+               # YminLim = Límite inferior del eje Y
+               # YmaxLim = Límite superior del eje Y
+               # DrawAxis = Indica si se dibuja el Eje principal de tiempo
+               # Labels = Indica si se ponen etiquetas a eje principal Puede ser un conjunto de caracteres indicando las etiquetas
+               # Ticks = indica si aparecen las marcas de eje
+                                 
+                                 
+                plot(1,1,axes=FALSE, xlab="",ylab="",xlim=c(XminLim,XmaxLim),ylim=c(YminLim,YmaxLim),type="n")
+                if(DrawAxis) axis(1, pos=(0),labels=Labels,tick=Ticks)}
+
 
 DrawTimeLine<- function(x, y, z, 
                                  XminLim=min(x), 
@@ -56,7 +75,7 @@ DrawTimeLine<- function(x, y, z,
                # XmaxLim = Límite superior del eje X
                # YminLim = Límite inferior del eje Y
                # YmaxLim = Límite superior del eje Y
-               # DrawBoard = Dice si se dibuja el tablero. Si es el primer TimeLine de la petición hay que dejar le valor por defecto (TRUE). Si en otro que queremos dibujar encima de otra ya creada cambiar a FALSE
+               # DrawBoard = Dice si se dibuja el tablero. Si no se ha usado antes DrawBoard y es el primer TimeLine de la petición hay que dejar le valor por defecto (TRUE). Si en otro que queremos dibujar encima de otra ya creada cambiar a FALSE
                # Lines = Indica si se dibujarán las líneas
                # Points = Indica si se dibujarán los puntos
                # Text = Indica si se pondrá un texto en todos los puntos
@@ -64,7 +83,7 @@ DrawTimeLine<- function(x, y, z,
                # FirstTextChar = Indica el texto a poner en el primer punto. Por defecto es el mismo texto que z[1]
 
                #comprobamos si hay que dibujar el eje
-               if (DrawBoard==TRUE) plot(1,1,xlim=c(XminLim,XmaxLim),ylim=c(YminLim,YmaxLim),type="n")
+               if (DrawBoard==TRUE) plot(1,1,axes=FALSE, xlab="",ylab="",xlim=c(XminLim,XmaxLim),ylim=c(YminLim,YmaxLim),type="n")
                if (Lines) lines(x,y,col=color)
                if (Points) points(x,y,col=color)
                if (Text) for (i in 1:length(x)) text(x[i],y[i]+0.5,label=z[i],col=color)
@@ -75,7 +94,7 @@ WriteEvent<-function(x,y,z){
                # x = Variable con la posición en el eje de tiempo
                # y = Nivel del la variable (se situará en negativo, por debajo del eje X)
                # Z = Texto a poner en pantalla
-               text(x,-(y),z)
+               text(x,-(y),paste("¬ ",z),pos=4) #pos=4 hace que el texto se sitúe a la derecha del punto elegido 
                line(rep(x,y),c(-y:0))
                }
 #Prueba
