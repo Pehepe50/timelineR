@@ -1,3 +1,6 @@
+#Autor: Pedro Herrero Petisco
+#email: pedroherreropetisco (arroba) gmail.com
+
 # Generamos el fichero Uncanny X Men de Prueba
 UncannyXMen<-data.frame(c(1:66,96:345,-1,346:544),"Uncanny X Men",1,1)
 names(UncannyXMen)<-c("Numero","Nombre","Orden","Nivel")
